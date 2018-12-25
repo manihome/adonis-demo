@@ -14,8 +14,12 @@
 */
 
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
+const Database = use("Database");
 const Route = use("Route");
 
 Route.on("/").render("welcome");
-
-Route.get("/hello", "HelloController.render");
+Route.get("/posts", () => "list of posts.");
+Route.post("/posts", () => "Post has been created.");
+Route.get("/posts/:id", ({ params }) => {
+  return `You're watching post ${params.id}.`;
+});
